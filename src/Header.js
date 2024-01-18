@@ -4,6 +4,11 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 
 function Header() {
+
+function Logout(){
+  return localStorage.clear();
+}
+
   return (
     <div>
       <Navbar bg="dark" data-bs-theme="dark">
@@ -15,6 +20,7 @@ function Header() {
                 <Link to="/add">Add Product</Link>
                 <Link to="/update">Update Product</Link>
                 <Link to="/delete">Delete Product</Link>
+                <Link to="/logout" onClick={(e) => Logout()}>Logout</Link>
               </>
             ) : (
               <>

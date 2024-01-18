@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 function Protected(props){
 
-    let Cmp = props.testprops;
+    let Cmp = props.testprop;
     
     const redirect = useNavigate();
 
@@ -16,7 +16,7 @@ function Protected(props){
 
     return (
         <div>
-            < Cmp />
+            {Cmp}
         </div>
     )
 }
