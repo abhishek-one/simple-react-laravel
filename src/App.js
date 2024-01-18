@@ -5,6 +5,7 @@ import Register from './Register'
 import AddProduct from './Add Product'
 import DeleteProduct from './Delete Product'
 import UpdateProduct from './Update Product'
+import Protected from './Protected'
 
 
 function App() {
@@ -14,9 +15,9 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
-        <Route path="/add" element={<AddProduct />} />
-        <Route path="/delete" element={<DeleteProduct />} />
-        <Route path="/update" element={<UpdateProduct />} />
+        <Route path="/add" element={<Protected testprop={<AddProduct />} />} />
+        <Route path="/delete" element={<Protected testprop={<DeleteProduct />} /> } />
+        <Route path="/update" element={<Protected testprop={<UpdateProduct />} />} />
       </Routes>
     </Router>
     </div>
