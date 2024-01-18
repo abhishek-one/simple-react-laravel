@@ -1,14 +1,21 @@
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Header from "./Header";
 
 function Register() {
+
+    const redirect = useNavigate();
+
+    useEffect(()=>{
+        if(localStorage.getItem('details')){
+            redirect("/add");
+        }
+    })
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const redirect = useNavigate();
 
   async function signUp() {
     let data = { name, email, password };
