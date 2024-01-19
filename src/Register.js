@@ -10,7 +10,7 @@ function Register() {
 
     useEffect(()=>{
         if(localStorage.getItem('details')){
-            redirect("/add");
+            redirect("/products");
         }
     })
   const [name, setName] = useState("");
@@ -23,20 +23,21 @@ function Register() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Accept: "application/json",
+        "Accept": "application/json",
       },
       body: JSON.stringify(data),
     });
     result = await result.json();
     console.warn("result", result);
     localStorage.setItem("details", JSON.stringify(result));
-    redirect("/add");
+    redirect("/products");
   }
 
   return (
     <>
       <Header />
-      <Form className="col-6 m-auto text-start">
+      <div className="col-md-6 col-11 border m-auto mt-5 p-4">
+      <Form className="m-auto text-start">
         <h1>Register</h1>
 
         <Form.Group className="mb-3" controlId="formBasicName">
@@ -72,6 +73,7 @@ function Register() {
           Submit
         </Button>
       </Form>
+      </div>
     </>
   );
 }

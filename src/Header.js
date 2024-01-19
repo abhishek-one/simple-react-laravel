@@ -1,36 +1,55 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import { Link } from "react-router-dom";
+
+
+import { useNavigate } from "react-router-dom";
 
 function Header() {
+  const redirect = useNavigate();
 
-function Logout(){
-  return localStorage.clear();
-}
+  function Logout(){
+    localStorage.clear();
+    return redirect("/login");
+  }
 
   return (
     <div>
-      <Navbar bg="dark" data-bs-theme="dark">
-        <Container>
-          <Navbar.Brand>Navbar</Navbar.Brand>
-          <Nav className="me-auto nav_bar_wrapper">
-            {localStorage.getItem("details") ? (
-              <>
-                <Link to="/add">Add Product</Link>
-                <Link to="/update">Update Product</Link>
-                <Link to="/delete">Delete Product</Link>
-                <Link to="/logout" onClick={(e) => Logout()}>Logout</Link>
-              </>
-            ) : (
-              <>
-                <Link to="/login">Login</Link>
-                <Link to="/register">Register</Link>
-              </>
-            )}
-          </Nav>
-        </Container>
-      </Navbar>
+      <nav className="navbar navbar-dark bg-dark">
+        <div className="container">
+          <div className="d-flex w-100 justify-content-between">
+            <div>
+              <a className="navbar-brand" href="/">
+                <img
+                  src="/images/logo.png"
+                  alt="Logo"
+                  width=""
+                  height="60"
+                  className="d-inline-block align-top"
+                />
+              </a>
+            </div>
+            <div className="navbar-nav d-flex justify-content-center">
+              <div className="nav-item d-flex">
+                {localStorage.getItem("details") ? (
+                  <>
+                    <div className="ps-2 nav-link">
+                      <button className="btn btn-danger btn-sm" onClick={Logout}>Logout</button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <a className="ps-2 nav-link" href="/login">
+                      <button className="btn btn-primary btn-sm">Login</button>
+
+                    </a>
+                    <a className="ps-2 nav-link" href="/register">
+                      <button className="btn btn-primary btn-sm">Register</button>
+                    </a>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </nav>
     </div>
   );
 }

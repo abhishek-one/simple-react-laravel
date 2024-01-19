@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+.min-inline-fit-content {
+  min-inline-size: fit-content;
+}
+
+.btn, input{
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+.App{
+  background: aliceblue;
+  height: 100vh;
+}
+#errors{
+  font-size: small;
+  color: red;
+  padding: 1% 0% 1% 0%;
+}
