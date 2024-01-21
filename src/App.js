@@ -18,6 +18,7 @@ function App() {
         <Route path="/products" element={<Protected testprop={<Products />} />} />
         <Route path="/delete" element={<Protected testprop={<DeleteProduct />} /> } />
         <Route path="/update" element={<Protected testprop={<UpdateProduct />} />} />
+        <Route path="*" element={<Login />} />
       </Routes>
     </Router>
     </div>
