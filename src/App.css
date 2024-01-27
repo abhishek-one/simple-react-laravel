@@ -54,3 +54,6 @@
   color: red;
   padding: 1% 0% 1% 0%;
 }
+td, th{
+  vertical-align: middle;
+}
