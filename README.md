@@ -8,7 +8,7 @@ Node Installation: Ensure your system is equipped with Node version 20.6.1 or la
 
 Package Installation: Execute npm install to install the required packages.
 
-Project Build: Initiate the project build with npm run dev followed by npm start.
+Project Build: Initiate the project build by npm start.
 
 Server Initialization: Launch the backend server using php artisan serve to experience the project in your browser.
 
