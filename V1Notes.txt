@@ -1,0 +1,194 @@
+npx create-react-app <name>
+npm start
+npm install react-bootstrap bootstrap
+add import 'bootstrap/dist/css/bootstrap.min.css'; to index
+install router
+npm install react-router-dom
+
+makinng a page 
+make Login.js in src 
+add code 
+function Login(){
+    return (
+        <div>
+        OK
+        </div>
+    )
+}
+export default Login
+
+
+In App.js
+
+import Header from './Header';
+
+function App() {
+  return (
+    <div className="App">
+      <Header />
+    </div>
+  );
+}
+
+import { BrowserRouter } from 'react-router-dom';
+
+
+Add this line in header 
+   <Link to="/login">Login</Link>
+
+This in app.js
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './Login'
+
+ <Router>
+    <Header />
+      <Routes>
+        <Route path="/login" element={<Login />} />
+      </Routes>
+    </Router>
+
+
+
+
+
+
+react hooks should always be in a function not in any loop, if condition or class
+
+react hooks should always be called in same order
+
+example -> useState hook
+useState syntax
+
+   const <array> = useState(<defaultvalue>)
+   const [currentState,function that updates current state] = useState(<defaultvalue>)
+
+eg const [count,setCount] = useCount(0)
+
+
+How an function submit looks like 
+
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const redirect = useNavigate();
+
+  async function signUp() {
+    let data = { name, email, password };
+    let result = await fetch("http://127.0.0.1:8000/api/create-user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify(data),
+    });
+    result=await result.json();
+    console.warn("result",result);
+    localStorage.setItem('details',JSON.stringify(result))
+    redirect('/add')
+  }
+
+  return (
+    <Form className="col-6 m-auto text-start">
+      <h1>Register</h1>
+
+      <Form.Group className="mb-3" controlId="formBasicName">
+        <Form.Label>Name</Form.Label>
+        <Form.Control
+          type="text"
+          placeholder="Enter Name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+      </Form.Group>
+
+  .....
+
+
+
+what is difference between these two lines of react why used {} ?
+
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './Login'
+
+In React, curly braces {} are used to import 'named' exports from a module,
+such as { BrowserRouter as Router, Routes, Route } from 'react-router-dom', 
+while importing without braces, like Login from './Login', is used for importing a 'default' export.
+
+
+
+
+
+
+
+
+
+
+
+useEffect(() => { ... }, [modalShow]);:
+
+The useEffect hook accepts two parameters: a callback function and a dependency array.
+The callback function inside useEffect contains the code that will be executed when certain dependencies change.
+The dependency array [modalShow] specifies which values the effect depends on. In this case, the effect will be triggered whenever the value of modalShow changes.
+
+
+const handleInputChange = (e) => { ... };:
+
+This line declares a constant handleInputChange, which is assigned an arrow function.
+The function takes one parameter, e, which represents the event object triggered by the input change.
+const { name, value } = e.target;:
+
+This line uses destructuring assignment to extract the name and value properties from the target property of the event object e.
+In React, the target property of the event object refers to the DOM element that triggered the event, in this case, the input element.
+if (name === "name") { setName(value); } else if (name === "image") { setImage(e.target.files[0]); }:
+
+
+Why used arrow function and not async function xyz(){} ?
+However, if the function needs to perform asynchronous operations, such as fetching data from an API 
+or using await with promises, then you would use an async function. Here's an example:
+
+async function handleInputChange() {
+    try {
+        const response = await fetchData(); // Example asynchronous operation
+        // Process response
+    } catch (error) {
+        // Handle error
+    }
+}
+
+useEffect vs useCallback
+
+No, adding a dependency array [changecount] to the useEffect hook does not make it function similarly to useCallback.
+
+Here's why:
+
+useEffect vs. useCallback:
+
+useEffect is primarily used to perform side effects in React components. 
+It runs after every render by default (unless dependencies are specified), 
+regardless of which component state or props have changed.
+useCallback, on the other hand, is used to memoize functions to prevent unnecessary re-renders of child components.
+It returns a memoized version of the callback function, which only changes if one of its dependencies changes.
+Effect of Adding Dependencies to useEffect:
+
+Adding dependencies to the useEffect hook means that the effect will only run when any of those dependencies change.
+In your case, the effect will run when changecount changes.
+However, it does not memoize the function like useCallback does. 
+The function inside useEffect will still be created anew on every render, 
+but the effect itself will only be executed when the dependencies change.
+
+In summary, useEffect is used to perform side effects after a component has rendered, 
+while useCallback is used to memoize functions to optimize performance and prevent unnecessary re-renders of child components.
+
+{ length: totalPages }:
+
+This is the first argument passed to the Array.from() method.
+ It specifies an object with a length property set to the value of totalPages.
+The length property indicates the desired length of the array to be created by Array.from().
+ It will create an array with totalPages number of elements.
+
+(_, index) => (:
+This is the second argument passed to the Array.from() method.
+It's a callback function that will be called for each element in the array created by Array.from().
+The underscore _ is a convention often used in JavaScript to indicate that the parameter is intentionally unused within the function.
+In this case, it's used to ignore the current element being processed by Array.from().

@@ -147,13 +147,16 @@ function Products() {
     setLoading(true);
 
     try {
-      const response = await fetch(`http://127.0.0.1:8000/api/view-products?page=${currentPage}&search=${searchQuery}`, {
-        method: 'GET',
-        headers: {
-          Accept: 'application/json',
-        },
-        mode: 'cors',
-      });
+      const response = await fetch(
+        `http://127.0.0.1:8000/api/view-products?page=${currentPage}&search=${searchQuery}`,
+        {
+          method: "GET",
+          headers: {
+            Accept: "application/json",
+          },
+          mode: "cors",
+        }
+      );
 
       if (!response.ok) {
         throw new Error(`Failed to fetch products. Status: ${response.status}`);
